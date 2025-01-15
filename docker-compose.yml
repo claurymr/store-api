@@ -1,0 +1,25 @@
+services:
+  productservice.api:
+    image: storeapi
+    build:
+      context: .
+      dockerfile: Store.Api/Dockerfile
+    ports:
+      - "5143:5143"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5143
+    volumes:
+      - storeapi-data:/app/Data
+    depends_on:
+      - productservice
+    networks:
+      - shared-network
+
+volumes:
+  storeapi-data:
+
+networks:
+  shared-network:
+    external: true
+
