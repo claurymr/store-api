@@ -27,6 +27,10 @@ public static class ServicesExtensions
                 options.RequireHttpsMetadata = true;
             });
 
+        services.AddAuthorizationBuilder()
+            .AddPolicy("AdminOnly", policy => policy.RequireRole("admin"))
+            .AddPolicy("AdminOrUser", policy => policy.RequireRole("admin", "user"));
+
         return services;
     }
 
