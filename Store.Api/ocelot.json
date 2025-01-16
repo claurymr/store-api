@@ -124,15 +124,35 @@
             }
         },
         {
-            "DownstreamPathTemplate": "/inventories/product/{productId}",
+            "DownstreamPathTemplate": "/inventories/products/{productId}/entry",
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
                     "Host": "localhost",
-                    "Port": 5064
+                    "Port": 5269
                 }
             ],
-            "UpstreamPathTemplate": "/api/inventories/products/{productId}",
+            "UpstreamPathTemplate": "/api/inventories/products/{productId}/entry",
+            "UpstreamHttpMethod": [
+                "Put"
+            ],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "Bearer",
+                "AllowedScopes": [
+                    "admin"
+                ]
+            }
+        },
+        {
+            "DownstreamPathTemplate": "/inventories/products/{productId}/exit",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5269
+                }
+            ],
+            "UpstreamPathTemplate": "/api/inventories/products/{productId}/exit",
             "UpstreamHttpMethod": [
                 "Put"
             ],
@@ -147,7 +167,7 @@
             "DownstreamHostAndPorts": [
                 {
                     "Host": "localhost",
-                    "Port": 5064
+                    "Port": 5269
                 }
             ],
             "UpstreamPathTemplate": "/api/inventories/products/{productId}",
@@ -163,15 +183,15 @@
             }
         },
         {
-            "DownstreamPathTemplate": "/inventoryhistories/product/{productId}",
+            "DownstreamPathTemplate": "/inventoryhistories/products/{productId}",
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
                     "Host": "localhost",
-                    "Port": 5064
+                    "Port": 5269
                 }
             ],
-            "UpstreamPathTemplate": "/api/inventoryhistories/product/{productId}",
+            "UpstreamPathTemplate": "/api/inventoryhistories/products/{productId}",
             "UpstreamHttpMethod": [
                 "Get"
             ],
