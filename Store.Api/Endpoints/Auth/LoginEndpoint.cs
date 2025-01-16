@@ -15,7 +15,16 @@ public class CreateProductEndpoint(AuthSettings authSettings, IAuthService authS
     public override void Configure()
     {
         Post("/login");
-        AllowAnonymous();
+
+        Options(x =>
+        {
+            x.AllowAnonymous();
+            x.WithDisplayName("Login");
+            x.Produces<Ok<TokenResponse>>();
+            x.Produces<BadRequest>();
+            x.Produces<ForbidHttpResult>();
+            x.WithOpenApi();
+        });
     }
 
     public override async Task<Results<Ok<TokenResponse>, BadRequest, ForbidHttpResult>> ExecuteAsync(LoginRequest req, CancellationToken ct)
