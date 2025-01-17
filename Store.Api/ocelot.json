@@ -61,6 +61,26 @@
             }
         },
         {
+            "DownstreamPathTemplate": "/products/categories/{category}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 8080
+                }
+            ],
+            "UpstreamPathTemplate": "/api/products/categories/{category}",
+            "UpstreamHttpMethod": [
+                "Get"
+            ],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "Bearer",
+                "AllowedScopes": [
+                    "AdminOrUser"
+                ]
+            }
+        },
+        {
             "DownstreamPathTemplate": "/products/{id}",
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
@@ -203,6 +223,6 @@
         
     ],
     "GlobalConfiguration": {
-        "BaseUrl": "https://localhost:8000"
+        "BaseUrl": "http://localhost:8000"
     }
 }

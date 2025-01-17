@@ -6,6 +6,7 @@ obj/
 # User-specific files
 .vscode/
 .idea/
+.DS_Store
 
 # Windows Installer files
 *.cab
