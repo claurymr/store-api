@@ -14,12 +14,13 @@ public class CreateProductEndpoint(AuthSettings authSettings, IAuthService authS
 
     public override void Configure()
     {
-        Post("/login");
+        Verbs(Http.POST);
+        Post("/api/login");
 
         Options(x =>
         {
             x.AllowAnonymous();
-            x.WithDisplayName("Login");
+            x.WithDisplayName("Login to Inventory Management System");
             x.Produces<Ok<TokenResponse>>();
             x.Produces<BadRequest>();
             x.Produces<ForbidHttpResult>();

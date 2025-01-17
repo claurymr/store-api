@@ -12,7 +12,7 @@ public static class ServicesExtensions
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
             {
-                var secret = Encoding.UTF8.GetBytes(configuration["Auth:Secret"]);
+                var secret = Encoding.UTF8.GetBytes(configuration["Auth:Secret"]!);
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuer = true,
@@ -24,7 +24,7 @@ public static class ServicesExtensions
                     IssuerSigningKey = new SymmetricSecurityKey(secret)
                 };
                 options.Authority = configuration["Auth:Issuer"];
-                options.RequireHttpsMetadata = true;
+                options.RequireHttpsMetadata = false;
             });
 
         services.AddAuthorizationBuilder()
