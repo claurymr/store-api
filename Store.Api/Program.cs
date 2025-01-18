@@ -1,19 +1,15 @@
-using FastEndpoints;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 using Store.Api.Extensions;
-using Store.Api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddConfigSettings(builder.Configuration);
 builder.Services.AddAuth(builder.Configuration);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddSingleton<IAuthService, AuthService>();
-builder.Services.AddFastEndpoints();
+builder.Configuration.AddJsonFile("ocelot.json", optional: false, reloadOnChange: true);
 builder.Services.AddOcelot();
 
 var app = builder.Build();
@@ -33,6 +29,5 @@ if (!app.Environment.IsDevelopment())
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
-app.UseFastEndpoints();
-await app.UseOcelot();
+app.UseOcelot().Wait();
 app.Run();

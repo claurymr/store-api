@@ -1,8 +1,7 @@
+using System.Security.Claims;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using Store.Api.Contracts;
 
 namespace Store.Api.Extensions;
 public static class ServicesExtensions
@@ -21,9 +20,11 @@ public static class ServicesExtensions
                     ValidateIssuerSigningKey = true,
                     ValidIssuer = configuration["Auth:Issuer"],
                     ValidAudience = configuration["Auth:Audience"],
-                    IssuerSigningKey = new SymmetricSecurityKey(secret)
+                    IssuerSigningKey = new SymmetricSecurityKey(secret),
+                    RoleClaimType = ClaimTypes.Role
                 };
                 options.Authority = configuration["Auth:Issuer"];
+                options.SaveToken = true;
                 options.RequireHttpsMetadata = false;
             });
 
@@ -31,14 +32,6 @@ public static class ServicesExtensions
             .AddPolicy("AdminOnly", policy => policy.RequireRole("admin"))
             .AddPolicy("AdminOrUser", policy => policy.RequireRole("admin", "user"));
 
-        return services;
-    }
-
-    public static IServiceCollection AddConfigSettings(this IServiceCollection services, IConfiguration configuration)
-    {
-        services.Configure<AuthSettings>(configuration.GetSection("Auth"));
-        services.AddSingleton(sp =>
-            sp.GetRequiredService<IOptions<AuthSettings>>().Value);
         return services;
     }
 }

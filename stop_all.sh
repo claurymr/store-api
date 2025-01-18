@@ -5,6 +5,7 @@ PROJECT_DIR=$(pwd)
 
 # List of services and their directories
 SERVICES=(
+  "inventory-auth-service"
   "product-service"
   "inventory-service"
   "store-api"
