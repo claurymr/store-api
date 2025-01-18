@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Move this file to root directory of all projects
+# Move this file to the root directory of all projects
 # Set the working directory to the root project folder (where this script is located)
 PROJECT_DIR=$(pwd)
 
@@ -21,20 +21,28 @@ else
   echo "Shared Docker network already exists: shared-network"
 fi
 
-# Run Docker Compose for ProductService
-echo "Running Docker Compose for Microservice ProductService..."
-cd "$PROJECT_DIR/product-service"  # Change to the Service1 directory
-docker-compose -f docker-compose.yml up -d --build
+# List of services and their directories
+SERVICES=(
+  "inventory-auth-service"
+  "product-service"
+  "inventory-service"
+  "store-api"
+)
 
-# Run Docker Compose for InventoryService
-echo "Running Docker Compose for Microservice InventoryService..."
-cd "$PROJECT_DIR/inventory-service"  # Change to the Service2 directory
-docker-compose -f docker-compose.yml up -d --build
+# Function to start a service using docker-compose
+start_service() {
+  local service_dir=$1
+  echo "Starting Docker Compose for $service_dir..."
+  cd "$PROJECT_DIR/$service_dir" || exit 1
+  docker-compose -f docker-compose.yml up -d --build
+}
 
-# Run Docker Compose for the StoreApi (API Gateway)
-echo "Running Docker Compose for StoreApi..."
-cd "$PROJECT_DIR/store-api"  # Change to the StoreApi directory
-docker-compose -f docker-compose.yml up -d --build
+# Export the function and variables for parallel execution
+export -f start_service
+export PROJECT_DIR
+
+# Start all services in parallel
+parallel -j 0 start_service ::: "${SERVICES[@]}"
 
 # Show the status of all running containers
 echo "All services are up and running. Here is the status of your containers:"
