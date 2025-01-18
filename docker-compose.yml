@@ -6,17 +6,13 @@ services:
       dockerfile: Store.Api/Dockerfile
     ports:
       - "${STOREAPI_PORT}:${STOREAPI_PORT}"
-      - 8001:8001
+      - "${STOREAPI_PORTALT}:${STOREAPI_PORTALT}"
     env_file:
       - ../.env
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     volumes:
       - storeapi-data:/app/Data
-      - ./Store.Api/ocelot.json:/app/ocelot.json
-    depends_on:
-      - productservice
-      - inventoryservice
     networks:
       - shared-network
 
