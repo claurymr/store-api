@@ -76,4 +76,3 @@ AUTH__USERNAME=user
 AUTH__PASSWORD=restricted
 AUTH__ROLE=user
 ```
-
