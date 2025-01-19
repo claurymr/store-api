@@ -63,4 +63,16 @@ chmod +x stop_all.sh
 ./stop_all.sh
 ```
 8. Import `.postman_collection.json` file to postman located in `/src` of root of repo, for testing endpoints once all services are up and running.
+9. To change valid user credentials to admin priviledges, change the following environment variables in .env and run environment vars setup.
+```
+AUTH__USERNAME=admin 
+AUTH__PASSWORD=admin
+AUTH__ROLE=admin
+```
+9. To change valid user credentials to user restrictions, change the following environment variables in .env and run environment vars setup.
+```
+AUTH__USERNAME=user 
+AUTH__PASSWORD=restricted
+AUTH__ROLE=user
+```
 
