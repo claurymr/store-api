@@ -4,6 +4,10 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Store.Api.Extensions;
+
+/// <summary>
+/// Extension methods for configuring authentication and authorization services.
+/// </summary>
 public static class ServicesExtensions
 {
     public static IServiceCollection AddAuth(this IServiceCollection services, IConfiguration configuration)

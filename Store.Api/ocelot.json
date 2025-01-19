@@ -131,10 +131,7 @@
                 "PUT"
             ],
             "AuthenticationOptions": {
-                "AuthenticationProviderKey": "Bearer",
-                "AllowedScopes": [
-                    "AdminOnly"
-                ]
+                "AuthenticationProviderKey": "Bearer"
             }
         },
         {
