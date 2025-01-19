@@ -1,27 +1,18 @@
 services:
-  productservice.api:
+  store.api:
     image: storeapi
     build:
       context: .
       dockerfile: Store.Api/Dockerfile
     ports:
       - "${STOREAPI_PORT}:${STOREAPI_PORT}"
-    ENVIRONMENT:
+      - "${STOREAPI_PORTALT}:${STOREAPI_PORTALT}"
+    env_file:
+      - ../.env
+    environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=http://+:${STOREAPI_PORT}
-      - AUTH__USERNAME=${AUTH__USERNAME}
-      - AUTH__PASSWORD=${AUTH__PASSWORD}
-      - AUTH__ROLE=${AUTH__ROLE}
-      - AUTH__ISSUER=${AUTH__ISSUER}${STOREAPI_PORT}
-      - AUTH__AUDIENCE=${AUTH__AUDIENCE}
-      - AUTH__SECRET=${AUTH__SECRET}
-      - OCELOT_CONFIGURATION_FILE=/app/ocelot.json
     volumes:
       - storeapi-data:/app/Data
-      - ./Store.Api/ocelot.json:/app/ocelot.json
-    depends_on:
-      - productservice
-      - inventoryservice
     networks:
       - shared-network
 

@@ -1,43 +1,51 @@
 {
     "Routes": [
         {
-            "DownstreamPathTemplate": "/products",
+            "DownstreamPathTemplate": "/login",
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "localhost",
-                    "Port": 8080
+                    "Host": "inventoryauthservice",
+                    "Port": 5086
                 }
             ],
-            "UpstreamPathTemplate": "/api/products",
+            "UpstreamPathTemplate": "/api/login",
             "UpstreamHttpMethod": [
-                "Post"
-            ],
-            "AuthenticationOptions": {
-                "AuthenticationProviderKey": "Bearer",
-                "AllowedScopes": [
-                    "AdminOnly"
-                ]
-            }
+                "POST"
+            ]
         },
         {
             "DownstreamPathTemplate": "/products",
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "localhost",
+                    "Host": "productservice",
                     "Port": 8080
                 }
             ],
             "UpstreamPathTemplate": "/api/products",
             "UpstreamHttpMethod": [
-                "Get"
+                "POST"
             ],
             "AuthenticationOptions": {
-                "AuthenticationProviderKey": "Bearer",
-                "AllowedScopes": [
-                    "AdminOrUser"
-                ]
+                "AuthenticationProviderKey": "Bearer"
+            }
+        },
+        {
+            "DownstreamPathTemplate": "/products",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "productservice",
+                    "Port": 8080
+                }
+            ],
+            "UpstreamPathTemplate": "/api/products",
+            "UpstreamHttpMethod": [
+                "GET"
+            ],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "Bearer"
             }
         },
         {
@@ -45,19 +53,33 @@
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "localhost",
+                    "Host": "productservice",
                     "Port": 8080
                 }
             ],
             "UpstreamPathTemplate": "/api/products/{id}",
             "UpstreamHttpMethod": [
-                "Get"
+                "GET"
             ],
             "AuthenticationOptions": {
-                "AuthenticationProviderKey": "Bearer",
-                "AllowedScopes": [
-                    "AdminOrUser"
-                ]
+                "AuthenticationProviderKey": "Bearer"
+            }
+        },
+        {
+            "DownstreamPathTemplate": "/products/categories/{category}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "productservice",
+                    "Port": 8080
+                }
+            ],
+            "UpstreamPathTemplate": "/api/products/categories/{category}",
+            "UpstreamHttpMethod": [
+                "GET"
+            ],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "Bearer"
             }
         },
         {
@@ -65,39 +87,17 @@
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "localhost",
+                    "Host": "productservice",
                     "Port": 8080
                 }
             ],
             "UpstreamPathTemplate": "/api/products/{id}",
             "UpstreamHttpMethod": [
-                "Put"
+                "PUT",
+                "DELETE"
             ],
             "AuthenticationOptions": {
-                "AuthenticationProviderKey": "Bearer",
-                "AllowedScopes": [
-                    "AdminOnly"
-                ]
-            }
-        },
-        {
-            "DownstreamPathTemplate": "/products/{id}",
-            "DownstreamScheme": "http",
-            "DownstreamHostAndPorts": [
-                {
-                    "Host": "localhost",
-                    "Port": 8080
-                }
-            ],
-            "UpstreamPathTemplate": "/api/products/{id}",
-            "UpstreamHttpMethod": [
-                "Delete"
-            ],
-            "AuthenticationOptions": {
-                "AuthenticationProviderKey": "Bearer",
-                "AllowedScopes": [
-                    "AdminOnly"
-                ]
+                "AuthenticationProviderKey": "Bearer"
             }
         },
         {
@@ -105,19 +105,16 @@
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "localhost",
+                    "Host": "productservice",
                     "Port": 8080
                 }
             ],
             "UpstreamPathTemplate": "/api/pricehistories/{productId}",
             "UpstreamHttpMethod": [
-                "Get"
+                "GET"
             ],
             "AuthenticationOptions": {
-                "AuthenticationProviderKey": "Bearer",
-                "AllowedScopes": [
-                    "AdminOrUser"
-                ]
+                "AuthenticationProviderKey": "Bearer"
             }
         },
         {
@@ -125,19 +122,16 @@
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "localhost",
-                    "Port": 5269
+                    "Host": "inventoryservice",
+                    "Port": 15269
                 }
             ],
             "UpstreamPathTemplate": "/api/inventories/products/{productId}/entry",
             "UpstreamHttpMethod": [
-                "Put"
+                "PUT"
             ],
             "AuthenticationOptions": {
-                "AuthenticationProviderKey": "Bearer",
-                "AllowedScopes": [
-                    "AdminOnly"
-                ]
+                "AuthenticationProviderKey": "Bearer"
             }
         },
         {
@@ -145,19 +139,16 @@
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "localhost",
-                    "Port": 5269
+                    "Host": "inventoryservice",
+                    "Port": 15269
                 }
             ],
             "UpstreamPathTemplate": "/api/inventories/products/{productId}/exit",
             "UpstreamHttpMethod": [
-                "Put"
+                "PUT"
             ],
             "AuthenticationOptions": {
-                "AuthenticationProviderKey": "Bearer",
-                "AllowedScopes": [
-                    "AdminOnly"
-                ]
+                "AuthenticationProviderKey": "Bearer"
             }
         },
         {
@@ -165,19 +156,16 @@
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "localhost",
-                    "Port": 5269
+                    "Host": "inventoryservice",
+                    "Port": 15269
                 }
             ],
             "UpstreamPathTemplate": "/api/inventories/products/{productId}",
             "UpstreamHttpMethod": [
-                "Get"
+                "GET"
             ],
             "AuthenticationOptions": {
-                "AuthenticationProviderKey": "Bearer",
-                "AllowedScopes": [
-                    "AdminOrUser"
-                ]
+                "AuthenticationProviderKey": "Bearer"
             }
         },
         {
@@ -185,24 +173,21 @@
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "localhost",
-                    "Port": 5269
+                    "Host": "inventoryservice",
+                    "Port": 15269
                 }
             ],
             "UpstreamPathTemplate": "/api/inventoryhistories/products/{productId}",
             "UpstreamHttpMethod": [
-                "Get"
+                "GET"
             ],
             "AuthenticationOptions": {
-                "AuthenticationProviderKey": "Bearer",
-                "AllowedScopes": [
-                    "AdminOrUser"
-                ]
+                "AuthenticationProviderKey": "Bearer"
             }
         }
         
     ],
     "GlobalConfiguration": {
-        "BaseUrl": "https://localhost:8000"
+        "BaseUrl": "http://localhost:8000"
     }
 }

@@ -1,0 +1,794 @@
+{
+	"info": {
+		"_postman_id": "a5dd1124-9558-45ec-ba01-8aaa9a3cbad3",
+		"name": "Inventory Management System",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28564371",
+		"_collection_link": "https://grading-assistant.postman.co/workspace/Grading-Assistant-Workspace~8fbdd91b-0800-4f0e-a57f-00964f5069a7/collection/28564371-a5dd1124-9558-45ec-ba01-8aaa9a3cbad3?action=share&source=collection_link&creator=28564371"
+	},
+	"item": [
+		{
+			"name": "Product Service",
+			"item": [
+				{
+					"name": "Create new product",
+					"request": {
+						"auth": {
+							"type": "bearer"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"test1\",\n  \"description\": \"testing\",\n  \"price\": 20,\n  \"category\": \"electronics\",\n  \"sku\": \"test-01\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products"
+							],
+							"query": [
+								{
+									"key": "UserName",
+									"value": "admin",
+									"disabled": true
+								},
+								{
+									"key": "Password",
+									"value": "admin",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get product by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/products/799235be-db30-46e3-95fd-c8dc4f647b5d?currency=USD",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"799235be-db30-46e3-95fd-c8dc4f647b5d"
+							],
+							"query": [
+								{
+									"key": "currency",
+									"value": "USD"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete product by Id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/products/799235be-db30-46e3-95fd-c8dc4f647b5d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"799235be-db30-46e3-95fd-c8dc4f647b5d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/products?currency=USD",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products"
+							],
+							"query": [
+								{
+									"key": "currency",
+									"value": "USD"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update product",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"b85f3b83-c75f-4e9e-9acf-f684fb792b72\",\n    \"name\": \"mytest\",\n    \"description\": \"testing\",\n    \"price\": 2000,\n    \"category\": \"makeup\",\n    \"sku\": \"test-02\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/products/95053c9d-5b2b-4e7d-ab16-54cc479cb2db",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"95053c9d-5b2b-4e7d-ab16-54cc479cb2db"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get price histories by product Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/pricehistories/products?currency=USD",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pricehistories",
+								"products"
+							],
+							"query": [
+								{
+									"key": "currency",
+									"value": "USD"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Inventory Service",
+			"item": [
+				{
+					"name": "Get inventory histories by product Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:15269/inventoryhistories/products/799235be-db30-46e3-95fd-c8dc4f647b5d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "15269",
+							"path": [
+								"inventoryhistories",
+								"products",
+								"799235be-db30-46e3-95fd-c8dc4f647b5d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get inventories by product Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:15269/inventories/products/799235be-db30-46e3-95fd-c8dc4f647b5d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "15269",
+							"path": [
+								"inventories",
+								"products",
+								"799235be-db30-46e3-95fd-c8dc4f647b5d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adjust product inventory entry",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:15269/inventories/products/799235be-db30-46e3-95fd-c8dc4f647b5d/entry",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "15269",
+							"path": [
+								"inventories",
+								"products",
+								"799235be-db30-46e3-95fd-c8dc4f647b5d",
+								"entry"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adjust product inventory exit",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:15269/inventories/products/799235be-db30-46e3-95fd-c8dc4f647b5d/exit",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "15269",
+							"path": [
+								"inventories",
+								"products",
+								"799235be-db30-46e3-95fd-c8dc4f647b5d",
+								"exit"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Inventory Management Api Gateway",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "bearer"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"UserName\": \"admin\",\n    \"Password\": \"admin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"test1\",\n  \"description\": \"testing\",\n  \"price\": 50,\n  \"category\": \"electronics\",\n  \"sku\": \"test-01\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"testy\",\n  \"description\": \"testing\",\n  \"price\": 100,\n  \"category\": \"food\",\n  \"sku\": \"test-02\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/products/f74a69cc-3236-4231-ad2d-2d48c76ecbc6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"products",
+								"f74a69cc-3236-4231-ad2d-2d48c76ecbc6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/products/f74a69cc-3236-4231-ad2d-2d48c76ecbc6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"products",
+								"f74a69cc-3236-4231-ad2d-2d48c76ecbc6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Products",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"products"
+							],
+							"query": [
+								{
+									"key": "currency",
+									"value": "USD",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product By Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/products/f74a69cc-3236-4231-ad2d-2d48c76ecbc6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"products",
+								"f74a69cc-3236-4231-ad2d-2d48c76ecbc6"
+							],
+							"query": [
+								{
+									"key": "currency",
+									"value": "USD",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product By Category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "currency",
+								"value": "USD",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/products/categories/electronics",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"products",
+								"categories",
+								"electronics"
+							],
+							"query": [
+								{
+									"key": "currency",
+									"value": "USD",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Price History By Product Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/pricehistories/f74a69cc-3236-4231-ad2d-2d48c76ecbc6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"pricehistories",
+								"f74a69cc-3236-4231-ad2d-2d48c76ecbc6"
+							],
+							"query": [
+								{
+									"key": "currency",
+									"value": "USD",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Inventories By Product Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/inventories/products/f74a69cc-3236-4231-ad2d-2d48c76ecbc6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"inventories",
+								"products",
+								"f74a69cc-3236-4231-ad2d-2d48c76ecbc6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Inventory History By Product Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/inventoryhistories/products/a62ff829-3c6d-438d-910c-29a5406188a9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"inventoryhistories",
+								"products",
+								"a62ff829-3c6d-438d-910c-29a5406188a9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adjust Inventory Product Entry By Product Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/inventories/products/f74a69cc-3236-4231-ad2d-2d48c76ecbc6/entry?quantity=12",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"inventories",
+								"products",
+								"f74a69cc-3236-4231-ad2d-2d48c76ecbc6",
+								"entry"
+							],
+							"query": [
+								{
+									"key": "quantity",
+									"value": "12"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adjust Inventory Product Exit By Product Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/inventories/products/f74a69cc-3236-4231-ad2d-2d48c76ecbc6/exit?quantity=15",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"inventories",
+								"products",
+								"f74a69cc-3236-4231-ad2d-2d48c76ecbc6",
+								"exit"
+							],
+							"query": [
+								{
+									"key": "quantity",
+									"value": "15"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Inventory Auth Service",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"UserName\": \"admin\",\n    \"Password\": \"admin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5086/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5086",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "jwtToken",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwibmJmIjoxNzM3MTg3NDkyLCJleHAiOjE3MzcxOTEwOTIsImlhdCI6MTczNzE4NzQ5MiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDoiLCJhdWQiOiJTdG9yZUFwaSJ9.j2-mZRlNrwbCvlGjngPWj1H0M6DLLprMvAz8clRSpeE"
+		}
+	]
+}
