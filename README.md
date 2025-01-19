@@ -1,7 +1,7 @@
 # Store Service
 
 > [!IMPORTANT]
-> Further documnentation including Architectural and Flow Diagram can be found in the [Wiki]()
+> Further documnentation including Architectural and Flow Diagram can be found in the [Wiki Overview](https://github.com/claurymr/store-api/wiki/Overview)
 
 > **Warning:** This solution is part of the Inventory Management System and should be run together with the rest of the services. The whole system is composed of the following components:
 > - [API Gateway](https://github.com/claurymr/store-api) <--- Complete setup instructions can be found here.
